@@ -1,2 +1,8 @@
 iOS -> ARKit
 Android -> ARCore
+
+Unity
+ AR Foundation
+ ARCore XR Plugin
+ ARKit XR Plugin
+ それぞれ 4.1.1 をインストール。(この時点で最新版 4.1.5 をインストールするとエラーが出たため。)
