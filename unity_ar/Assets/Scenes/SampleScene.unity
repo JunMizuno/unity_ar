@@ -481,6 +481,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aa97cf6670da4f05a47e1bdc271578f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  appearedObject: {fileID: 9072294095393773459, guid: ddeb5c6acc4a84314af2a245203d893e, type: 3}
 --- !u!850595691 &962133518
 LightingSettings:
   m_ObjectHideFlags: 0
