@@ -24,6 +24,8 @@ public class PlaceOnPlane : MonoBehaviour
         if (Input.touchCount > 0)
         {
             Vector2 touchPosition = Input.GetTouch(0).position;
+
+            // TrackableTypeを変えると判定する種別を変更できる
             if (raycastManager.Raycast(touchPosition, hits, TrackableType.Planes))
             {
                 // ヒットした場合、距離順にソートされて先頭に一番近いものが格納されるとのこと
