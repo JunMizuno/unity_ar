@@ -34,14 +34,13 @@ public class WebCameraManager : MonoBehaviour
         }
 
         // @memo.mizuno 1番目に登録してあるカメラを選択して保持しておく。
-        webCamTexture = new WebCamTexture(webCamDevices[selectedCameraIndex].name);
-        // @todo.mizuno ↓後ほどコメントアウト。
-        // @todo.mizuno スクリーンは大きいサイズに合わせて矩形に設定。
-        float max = Mathf.Max(Screen.width, Screen.height);
-        Vector2 size = new Vector2(max, max);
-        camerasImage.GetComponent<RectTransform>().sizeDelta = size;
-        Vector3 angle = new Vector3(0.0f, 0.0f, -90.0f);
-        camerasImage.GetComponent<RectTransform>().localEulerAngles = angle;
+        // @memo.mizuno カメラ名、画面サイズ、FPSを指定して作成できる。
+        float screenMax = Mathf.Max(Screen.width, Screen.height);
+        webCamTexture = new WebCamTexture(webCamDevices[selectedCameraIndex].name, (int)screenMax, (int)screenMax);
+        // @memo.mizuno スクリーンは大きいサイズに合わせて矩形に設定。
+        camerasImage.GetComponent<RectTransform>().sizeDelta = new Vector2(screenMax, screenMax);
+        // @memo.mizuno デフォルトだとバーティカルで表示されてしまうので、苦肉ですが強引にポートレートになる様に角度を変えています。
+        camerasImage.GetComponent<RectTransform>().localEulerAngles = new Vector3(0.0f, 0.0f, -90.0f);
         camerasImage.texture = webCamTexture;
         webCamTexture.Play();
 
@@ -106,26 +105,23 @@ public class WebCameraManager : MonoBehaviour
         webCamTexture.Stop();
 
         selectedCameraIndex++;
+        // @memo.mizuno 自前のスマホだとインデックスについてメインカメラが「0」、インカメラが「2」となっていたため、それ以外は使用しない様にした。
+        // @memo.mizuno 因みに、自前のスマホはインカメラ含め、4つのカメラ判定が存在していた。
         if (selectedCameraIndex >= 2)
         {
             selectedCameraIndex = 0;
         }
 
-        // @todo.mizuno この方法ではインカメラが表示されない…
-        webCamTexture = new WebCamTexture(webCamDevices[selectedCameraIndex].name);
-        if(selectedCameraIndex == 0)
+        float screenMax = Mathf.Max(Screen.width, Screen.height);
+        webCamTexture = new WebCamTexture(webCamDevices[selectedCameraIndex].name, (int)screenMax, (int)screenMax);
+        if (selectedCameraIndex == 0)
         {
-            Vector3 angle = new Vector3(0.0f, 0.0f, -90.0f);
-            camerasImage.GetComponent<RectTransform>().localEulerAngles = angle;
-            Vector3 scale = new Vector3(1.0f, 1.0f, 1.0f);
-            camerasImage.GetComponent<RectTransform>().localScale = scale;
+            camerasImage.GetComponent<RectTransform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
         }
         else
         {
-            Vector3 angle = new Vector3(0.0f, 0.0f, 270.0f);
-            camerasImage.GetComponent<RectTransform>().localEulerAngles = angle;
-            Vector3 scale = new Vector3(-1.0f, 1.0f, 1.0f);
-            camerasImage.GetComponent<RectTransform>().localScale = scale;
+            // @memo.mizuno インカメラの場合は画面を反転させる。
+            camerasImage.GetComponent<RectTransform>().localScale = new Vector3(-1.0f, 1.0f, 1.0f);
         }
         camerasImage.texture = webCamTexture;
         camerasName.text = webCamDevices[selectedCameraIndex].name;
