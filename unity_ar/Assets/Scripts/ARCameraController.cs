@@ -49,6 +49,7 @@ public class ARCameraController : MonoBehaviour
         // ??
         aRCameraManager.subsystem.Stop();
 
+        // @todo.mizuno 20210303 上記のストップが意味がなかった場合、一旦ローカルに状態を保存してswitchの外で実行することを試す。
         CameraFacingDirection facingDirection = aRCameraManager.requestedFacingDirection;
         switch (facingDirection)
         {
