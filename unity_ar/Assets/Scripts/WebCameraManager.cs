@@ -37,9 +37,16 @@ public class WebCameraManager : MonoBehaviour
         // @memo.mizuno カメラ名、画面サイズ、FPSを指定して作成できる。
         float screenMax = Mathf.Max(Screen.width, Screen.height);
         webCamTexture = new WebCamTexture(webCamDevices[selectedCameraIndex].name, (int)screenMax, (int)screenMax);
+
+        // @memo.mizuno 参考、アスペクト比そのままに画面サイズに表示させる場合
+        /*
+        webCamTexture.requestedWidth = Screen.width;
+        webCamTexture.requestedHeight = Screen.height;
+        */
+
         // @memo.mizuno スクリーンは大きいサイズに合わせて矩形に設定。
         camerasImage.GetComponent<RectTransform>().sizeDelta = new Vector2(screenMax, screenMax);
-        // @memo.mizuno デフォルトだとバーティカルで表示されてしまうので、苦肉ですが強引にポートレートになる様に角度を変えています。
+        // @memo.mizuno デフォルトだとランドスケープで表示されてしまうので、苦肉ですが強引にポートレートになる様に角度を変えています。
         camerasImage.GetComponent<RectTransform>().localEulerAngles = new Vector3(0.0f, 0.0f, -90.0f);
         camerasImage.texture = webCamTexture;
         webCamTexture.Play();
