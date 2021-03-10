@@ -9,7 +9,8 @@ public class ARCameraController : MonoBehaviour
     public ARCameraManager aRCameraManager;
     public Button changeCameraButton;
 
-    public Text testText;
+    private WebCamTexture webCamTexture;
+    private WebCamDevice[] webCamDevices;
 
     private void Start()
     {
@@ -17,8 +18,6 @@ public class ARCameraController : MonoBehaviour
         {
             Debug.Log("ARカメラのアタッチミス");
         }
-
-        testText.text = "Name:" + aRCameraManager.name + "  FacingDirection:" + aRCameraManager.requestedFacingDirection;
 
         SetButtonPosition();
     }
@@ -41,32 +40,33 @@ public class ARCameraController : MonoBehaviour
 
     public void ChangeCamera()
     {
+
+    }
+
+    /// <summary>
+    /// @memo.mizuno FacingDirectionは顔認識で使用するっぽい。
+    /// </summary>
+    public void ChangeFacingDirection()
+    {
         if (aRCameraManager == null)
         {
             return;
         }
 
-        // ??
-        aRCameraManager.subsystem.Stop();
-
-        // @todo.mizuno 20210303 上記のストップが意味がなかった場合、一旦ローカルに状態を保存してswitchの外で実行することを試す。
-        CameraFacingDirection facingDirection = aRCameraManager.requestedFacingDirection;
-        switch (facingDirection)
+        CameraFacingDirection targetDirection = CameraFacingDirection.World;
+        switch (aRCameraManager.currentFacingDirection)
         {
             case CameraFacingDirection.World:
-                aRCameraManager.requestedFacingDirection = CameraFacingDirection.User;
+                targetDirection = CameraFacingDirection.User;
                 break;
             case CameraFacingDirection.User:
-                aRCameraManager.requestedFacingDirection = CameraFacingDirection.World;
+                targetDirection = CameraFacingDirection.World;
                 break;
             default:
-                aRCameraManager.requestedFacingDirection = CameraFacingDirection.World;
+                targetDirection = CameraFacingDirection.World;
                 break;
         }
 
-        // ??
-        aRCameraManager.subsystem.Start();
-
-        testText.text = "Name:" + aRCameraManager.name + "  FacingDirection:" + aRCameraManager.requestedFacingDirection;
+        aRCameraManager.requestedFacingDirection = targetDirection;
     }
 }
