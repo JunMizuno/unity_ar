@@ -678,7 +678,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55459f6fcca654f688625bcb3ba1a580, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aRCameraManager: {fileID: 231685262}
+  arCameraManager: {fileID: 231685262}
   changeCameraButton: {fileID: 1669919697}
 --- !u!1 &904856349
 GameObject:

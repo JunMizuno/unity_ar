@@ -1,20 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
 
 public class ARCameraController : MonoBehaviour
 {
-    public ARCameraManager aRCameraManager;
+    public ARCameraManager arCameraManager;
     public Button changeCameraButton;
 
     private WebCamTexture webCamTexture;
     private WebCamDevice[] webCamDevices;
 
+    private int currentCameraIndex = 0;
+
     private void Start()
     {
-        if (aRCameraManager == null)
+        if (arCameraManager == null)
         {
             Debug.Log("ARカメラのアタッチミス");
         }
@@ -40,7 +40,30 @@ public class ARCameraController : MonoBehaviour
 
     public void ChangeCamera()
     {
+        Debug.Log("<color=red>" + "ARCameraController:ChangeCamera" + "</color>");
 
+        webCamDevices = WebCamTexture.devices;
+
+        if (webCamDevices.Length <= 1)
+        {
+            return;
+        }
+
+        webCamTexture = new WebCamTexture(webCamDevices[currentCameraIndex].name);
+        webCamTexture.Stop();
+
+        // @memo.mizuno 原則、2つのカメラしか使用しないこととする。
+        if (currentCameraIndex == 0)
+        {
+            currentCameraIndex++;
+        }
+        else
+        {
+            currentCameraIndex--;
+        }
+
+        webCamTexture = new WebCamTexture(webCamDevices[currentCameraIndex].name);
+        webCamTexture.Play();
     }
 
     /// <summary>
@@ -48,13 +71,13 @@ public class ARCameraController : MonoBehaviour
     /// </summary>
     public void ChangeFacingDirection()
     {
-        if (aRCameraManager == null)
+        if (arCameraManager == null)
         {
             return;
         }
 
         CameraFacingDirection targetDirection = CameraFacingDirection.World;
-        switch (aRCameraManager.currentFacingDirection)
+        switch (arCameraManager.currentFacingDirection)
         {
             case CameraFacingDirection.World:
                 targetDirection = CameraFacingDirection.User;
@@ -67,6 +90,6 @@ public class ARCameraController : MonoBehaviour
                 break;
         }
 
-        aRCameraManager.requestedFacingDirection = targetDirection;
+        arCameraManager.requestedFacingDirection = targetDirection;
     }
 }
