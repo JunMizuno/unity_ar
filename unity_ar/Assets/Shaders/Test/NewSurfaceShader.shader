@@ -7,6 +7,7 @@
         _Glossiness ("Smoothness", Range(0,1)) = 0.5
         _Metallic ("Metallic", Range(0,1)) = 0.0
     }
+
     SubShader
     {
         Tags { "RenderType"="Opaque" }
@@ -34,20 +35,36 @@
         // See https://docs.unity3d.com/Manual/GPUInstancing.html for more information about instancing.
         // #pragma instancing_options assumeuniformscaling
         UNITY_INSTANCING_BUFFER_START(Props)
-            // put more per-instance properties here
+        // put more per-instance properties here
         UNITY_INSTANCING_BUFFER_END(Props)
 
         void surf (Input IN, inout SurfaceOutputStandard o)
         {
             // Albedo comes from a texture tinted by color
             fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
+            // Albedoは反射の割合、ゼロで真っ黒になる。
             o.Albedo = c.rgb;
             // Metallic and smoothness come from slider variables
             o.Metallic = _Metallic;
             o.Smoothness = _Glossiness;
             o.Alpha = c.a;
         }
+
         ENDCG
     }
+
     FallBack "Diffuse"
 }
+
+// 以下、参考・サンプルなど。
+/*
+struct SurfaceOutput
+{
+    half3 Albedo;
+    half3 Normal;
+    half3 Emission;
+    half Specular;
+    half Gloss;
+    half Alpha;
+};
+*/
