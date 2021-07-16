@@ -92,4 +92,25 @@ public class ARCameraController : MonoBehaviour
 
         arCameraManager.requestedFacingDirection = targetDirection;
     }
+
+    private void OnEnable()
+    {
+        if (arCameraManager == null)
+        {
+            return;
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (arCameraManager == null)
+        {
+            return;
+        }
+    }
+
+    private void OnCameraFrameReceived(ARCameraFrameEventArgs eventArgs)
+    {
+
+    }
 }

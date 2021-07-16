@@ -112,7 +112,7 @@ public class WebCameraManager : MonoBehaviour
         webCamTexture.Stop();
 
         selectedCameraIndex++;
-        // @memo.mizuno 自前のスマホだとインデックスについてメインカメラが「0」、インカメラが「2」となっていたため、それ以外は使用しない様にした。
+        // @memo.mizuno 自前のスマホだとインデックスについてメインカメラが「0」、インカメラが「1」となっていたため、それ以外は使用しない様にした。
         // @memo.mizuno 因みに、自前のスマホはインカメラ含め、4つのカメラ判定が存在していた。
         if (selectedCameraIndex >= 2)
         {
