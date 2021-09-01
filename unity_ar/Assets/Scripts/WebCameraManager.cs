@@ -6,6 +6,8 @@ using System.Text;
 
 public class WebCameraManager : MonoBehaviour
 {
+    // @todo.mizuno Android11でカメラが取得できない問題が出ている。(でもたまに取れる。)
+
     public Button changeCameraButton;
     public Text camerasName;
     public RawImage camerasImage;
