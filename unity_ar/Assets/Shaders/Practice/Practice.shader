@@ -38,7 +38,7 @@ Shader "Unlit/Practice"
             {
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
-                o.uv = v.uv;
+                o.uv = -v.uv + 0.1f;
                 return o;
             }
 
