@@ -30,7 +30,6 @@ public class AssetBundleEditor
             builder.assetNames = UnityEditor.AssetDatabase.GetAssetPathsFromAssetBundle(builder.assetBundleName);
             builder.assetBundleVariant = variant;
             assetBundleBuildList.Add(builder);
-
         }
 
         if (assetBundleBuildList.Count > 0)
