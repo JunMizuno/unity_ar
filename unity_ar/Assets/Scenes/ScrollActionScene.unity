@@ -274,6 +274,7 @@ GameObject:
   - component: {fileID: 448399556}
   - component: {fileID: 448399555}
   - component: {fileID: 448399554}
+  - component: {fileID: 448399557}
   m_Layer: 0
   m_Name: LeftCamera
   m_TagString: MainCamera
@@ -346,6 +347,19 @@ Transform:
   m_Father: {fileID: 998575431}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &448399557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 448399553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7d073b164b7e43dc9e72089ca4d96da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  filter: {fileID: 2100000, guid: dccd8691a006048aaa04eec3e5375726, type: 2}
 --- !u!1 &591827532
 GameObject:
   m_ObjectHideFlags: 0
@@ -512,6 +526,7 @@ GameObject:
   - component: {fileID: 1816054694}
   - component: {fileID: 1816054696}
   - component: {fileID: 1816054695}
+  - component: {fileID: 1816054697}
   m_Layer: 0
   m_Name: RightCamera
   m_TagString: MainCamera
@@ -584,3 +599,16 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &1816054697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1816054693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7d073b164b7e43dc9e72089ca4d96da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  filter: {fileID: 0}
