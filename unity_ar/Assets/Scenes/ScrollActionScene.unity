@@ -189,7 +189,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: bc849cce114ff4b5fb927f6008e58f7c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -525,7 +525,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1816054694}
   - component: {fileID: 1816054696}
-  - component: {fileID: 1816054695}
   - component: {fileID: 1816054697}
   m_Layer: 0
   m_Name: RightCamera
@@ -548,14 +547,6 @@ Transform:
   m_Father: {fileID: 998575431}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!81 &1816054695
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1816054693}
-  m_Enabled: 1
 --- !u!20 &1816054696
 Camera:
   m_ObjectHideFlags: 0
@@ -611,4 +602,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7d073b164b7e43dc9e72089ca4d96da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  filter: {fileID: 2100000, guid: 8009a444c1b3b4f0aa6e16ddfca8a0e8, type: 2}
+  filter: {fileID: 2100000, guid: acff31aa799264ab9abb7a629dd64189, type: 2}
