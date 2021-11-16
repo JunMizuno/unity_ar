@@ -22,13 +22,13 @@ public class GameController : MonoBehaviour
     {
         if (TouchManager.IsTouchDowned())
         {
-            Debug.Log("<color=white>" + "GameController IsTouchDowned" + "</color>");
+            //Debug.Log("<color=white>" + "GameController IsTouchDowned" + "</color>");
             var touchPos = Input.mousePosition;
             touchPos.z = -Camera.main.transform.position.z;
             Vector3 worldPoint = Camera.main.ScreenToWorldPoint(touchPos);
-            Debug.Log("<color=white>" + "Input Position:" + Input.mousePosition + "</color>");
-            Debug.Log("<color=white>" + "touchPos:" + touchPos + "</color>");
-            Debug.Log("<color=white>" + "Touched WorldPoint:" + worldPoint + "</color>");
+            //Debug.Log("<color=white>" + "Input Position:" + Input.mousePosition + "</color>");
+            //Debug.Log("<color=white>" + "touchPos:" + touchPos + "</color>");
+            //Debug.Log("<color=white>" + "Touched WorldPoint:" + worldPoint + "</color>");
         }
         else if (TouchManager.IsTouchHolding())
         {
@@ -36,13 +36,7 @@ public class GameController : MonoBehaviour
         }
         else if (TouchManager.IsTouchReleased())
         {
-            Debug.Log("<color=white>" + "GameController IsTouchReleased" + "</color>");
-            var touchPos = Input.mousePosition;
-            touchPos.z = -Camera.main.transform.position.z;
-            Vector3 worldPoint = Camera.main.ScreenToWorldPoint(touchPos);
-            Debug.Log("<color=white>" + "Input Position:" + Input.mousePosition + "</color>");
-            Debug.Log("<color=white>" + "touchPos:" + touchPos + "</color>");
-            Debug.Log("<color=white>" + "Released WorldPoint:" + worldPoint + "</color>");
+            //Debug.Log("<color=white>" + "GameController IsTouchReleased" + "</color>");
         }
     }
 }
