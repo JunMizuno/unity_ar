@@ -26,16 +26,11 @@ public static class TouchManager
         return Input.GetMouseButton(0);
     }
 
-    public static GameObject CheckCollidedObject(TOUCH_PATTERN pattern)
+    public static GameObject CheckCollidedObject()
     {
         GameObject collidedGameObject = null;
 
-        switch (pattern)
-        {
-            default:
-                break;
-        }
-
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
 
 
