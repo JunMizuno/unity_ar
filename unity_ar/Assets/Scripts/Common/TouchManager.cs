@@ -26,13 +26,22 @@ public static class TouchManager
         return Input.GetMouseButton(0);
     }
 
-    public static GameObject CheckCollidedObject()
+    public static GameObject CheckCollidedObject(Camera targetCamera)
     {
+        if (targetCamera == null)
+        {
+            return null;
+        }
+
         GameObject collidedGameObject = null;
 
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-
+        Ray ray = targetCamera.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit))
+        {
+            // @todo.mizuno 何か処理を渡してもいいかと思う。
+            collidedGameObject = hit.collider.gameObject;
+        }
 
         return collidedGameObject;
     }

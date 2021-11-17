@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
+    [SerializeField]
+    public Camera[] cameras;
+
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     static void FirstAction()
     {
@@ -26,9 +29,15 @@ public class GameController : MonoBehaviour
             var touchPos = Input.mousePosition;
             touchPos.z = -Camera.main.transform.position.z;
             Vector3 worldPoint = Camera.main.ScreenToWorldPoint(touchPos);
-            //Debug.Log("<color=white>" + "Input Position:" + Input.mousePosition + "</color>");
-            //Debug.Log("<color=white>" + "touchPos:" + touchPos + "</color>");
-            //Debug.Log("<color=white>" + "Touched WorldPoint:" + worldPoint + "</color>");
+            Debug.Log("<color=white>" + "Input Position:" + Input.mousePosition + "</color>");
+            Debug.Log("<color=white>" + "Touched WorldPoint:" + worldPoint + "</color>");
+
+            // @todo.mizuno 一旦当たり判定のテスト。
+            var collidedObject = TouchManager.CheckCollidedObject(cameras[1]);
+            if (collidedObject != null)
+            {
+                Debug.Log("<color=white>" + "GameController collidedObject:" + collidedObject.name + "</color>");
+            }
         }
         else if (TouchManager.IsTouchHolding())
         {
