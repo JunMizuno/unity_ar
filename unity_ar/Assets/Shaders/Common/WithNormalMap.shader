@@ -62,6 +62,7 @@
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
 
                 // 接空間におけるライト方向のベクトルと視点方向のベクトルを求める。
+                // TANGENT_SPACE_ROTATIONマクロの結果でrotationという行列が取得できる。
                 TANGENT_SPACE_ROTATION;
                 o.lightDir = mul(rotation, ObjSpaceLightDir(v.vertex));
                 o.viewDir = mul(rotation, ObjSpaceViewDir(v.vertex));
@@ -77,10 +78,11 @@
                 
                 fixed4 col = tex2D(_MainTex, i.uv);
 
-                // ノーマルマップから法線情報を取得する。
+                // ノーマルマップから法線情報を取得する。(UnpackNormalはテクスチャに0〜1で書き込まれている法線情報を-1〜1の値に変換)
                 half3 normal = UnpackNormal(tex2D(_BumpMap, i.uv));
 
                 // ノーマルマップから得た法線情報をつかってライティング計算をする。
+                // 拡散反射と鏡面反射
                 half4 diff = saturate(dot(normal, i.lightDir)) * _LightColor0;
                 half3 spec = pow(max(0, dot(normal, halfDir)), _Shininess * 128.0) * _LightColor0.rgb * col.rgb;
 
