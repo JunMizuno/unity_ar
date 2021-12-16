@@ -33,7 +33,7 @@ public class GameController : MonoBehaviour
             Debug.Log("<color=white>" + "Touched WorldPoint:" + worldPoint + "</color>");
 
             // @todo.mizuno 一旦当たり判定のテスト。
-            var collidedObject = TouchManager.CheckCollidedObject(cameras[1]);
+            var collidedObject = TouchManager.CheckCollidedObject(cameras[0]);
             if (collidedObject != null)
             {
                 Debug.Log("<color=white>" + "GameController collidedObject:" + collidedObject.name + "</color>");
