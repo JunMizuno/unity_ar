@@ -26,11 +26,9 @@ public class GameController : MonoBehaviour
         if (TouchManager.IsTouchDowned())
         {
             //Debug.Log("<color=white>" + "GameController IsTouchDowned" + "</color>");
-            var touchPos = Input.mousePosition;
-            touchPos.z = -Camera.main.transform.position.z;
-            Vector3 worldPoint = Camera.main.ScreenToWorldPoint(touchPos);
-            Debug.Log("<color=white>" + "Input Position:" + Input.mousePosition + "</color>");
-            Debug.Log("<color=white>" + "Touched WorldPoint:" + worldPoint + "</color>");
+            Vector3 worldPoint = TouchManager.GetWorldPositionByMousePosition(Camera.main);
+            //Debug.Log("<color=white>" + "Input Position:" + Input.mousePosition + "</color>");
+            //Debug.Log("<color=white>" + "Touched WorldPoint:" + worldPoint + "</color>");
 
             // @todo.mizuno 一旦当たり判定のテスト。
             var collidedObject = TouchManager.CheckCollidedObject(cameras[0]);

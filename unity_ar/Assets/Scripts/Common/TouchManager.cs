@@ -45,4 +45,12 @@ public static class TouchManager
 
         return collidedGameObject;
     }
+
+    public static Vector3 GetWorldPositionByMousePosition(Camera targetCamera)
+    {
+        var touchPos = Input.mousePosition;
+        touchPos.z = -targetCamera.transform.position.z;
+        Vector3 worldPoint = targetCamera.ScreenToWorldPoint(touchPos);
+        return worldPoint;
+    }
 }
