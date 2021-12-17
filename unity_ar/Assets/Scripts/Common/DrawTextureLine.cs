@@ -25,6 +25,14 @@ public class DrawTextureLine : MonoBehaviour
     private List<int> trianglesList = new List<int>();   // インデックス用
     private List<Mesh> createdMesh = new List<Mesh>();
 
+    public void Start()
+    {
+        // @memo.mizuno メインカメラと角度を合わせて、ビルボードのような形にする。
+        var angles = this.gameObject.transform.localRotation.eulerAngles;
+        angles.x = Camera.main.transform.localRotation.eulerAngles.x;
+        this.gameObject.transform.rotation = Quaternion.Euler(angles);
+    }
+
     public void Update()
     {
         // ファーストタップ
@@ -38,10 +46,7 @@ public class DrawTextureLine : MonoBehaviour
             var touchPos = Input.mousePosition;
             touchPos.z = -Camera.main.transform.position.z;
             Vector3 touchPoint = Camera.main.ScreenToWorldPoint(touchPos);
-            Debug.Log("<color=yellow>" + "DrawTextureLine touchPoint:" + touchPoint + "</color>");
             DownCursor(touchPoint);
-
-            CreateMesh();
         }
         // タップムーブ
         else if (Input.GetMouseButton(0))
@@ -55,7 +60,6 @@ public class DrawTextureLine : MonoBehaviour
 
     public void CreateMesh()
     {
-        /*
         Vector2 prevPoint = pointList[pointList.Count - 2];
         Vector2 currentPoint = pointList[pointList.Count - 1];
         Vector2 direction = (currentPoint - prevPoint).normalized;
@@ -66,39 +70,20 @@ public class DrawTextureLine : MonoBehaviour
 
         verticsList.Add(plus90);
         verticsList.Add(minus90);
-        */
-
-        Vector2 testVec = pointList[0];
-        testVec += new Vector2(15.0f, 0.0f);
-        Vector2 plus90_2 = testVec + new Vector2(0.0f, 1.0f) * lineSize;
-        Vector2 minus90_2 = testVec + new Vector2(0.0f, -1.0f) * lineSize;
-        verticsList.Add(plus90_2);
-        verticsList.Add(minus90_2);
-
-        /*
+        
         uvList.Add(new Vector2(uvOffset, 0));
         uvList.Add(new Vector2(uvOffset, 1));
         uvOffset += (currentPoint - prevPoint).magnitude / scrollSpeed;
-        */
-        uvList.Add(new Vector2(1.0f, 0.0f));
-        uvList.Add(new Vector2(1.0f, 1.0f));
 
-        /*
-        trianglesList.Add(indexOffset);
-        trianglesList.Add(indexOffset + 1);
+        // @memo.mizuno 頂点のインデックスは時計回りになるように、ListにAddする時は逆から格納すること。
         trianglesList.Add(indexOffset + 2);
-        trianglesList.Add(indexOffset + 1);
         trianglesList.Add(indexOffset + 3);
+        trianglesList.Add(indexOffset + 1);
         trianglesList.Add(indexOffset + 2);
+        trianglesList.Add(indexOffset + 1);
+        trianglesList.Add(indexOffset);
 
         indexOffset += 2;
-        */
-        trianglesList.Add(2);
-        trianglesList.Add(3);
-        trianglesList.Add(1);
-        trianglesList.Add(2);
-        trianglesList.Add(1);
-        trianglesList.Add(0);
 
         mesh.vertices = verticsList.ToArray();
         mesh.uv = uvList.ToArray();
@@ -112,14 +97,9 @@ public class DrawTextureLine : MonoBehaviour
     {
         pointList.Add(touchPoint);
 
-        /*
-        verticsList.Add(touchPoint);
-        verticsList.Add(touchPoint);
-        */
         Vector2 currentPoint = touchPoint;
         Vector2 plus90 = currentPoint + new Vector2(0.0f, 1.0f) * lineSize;
         Vector2 minus90 = currentPoint + new Vector2(0.0f, -1.0f) * lineSize;
-
         verticsList.Add(plus90);
         verticsList.Add(minus90);
 
@@ -128,14 +108,16 @@ public class DrawTextureLine : MonoBehaviour
 
         indexOffset = 0;
 
+        if (mesh != null)
+        {
+            mesh.Clear();
+        }
         mesh = new Mesh();
     }
 
     public void MoveCursor(Vector3 touchPoint)
     {
-        /*
         pointList.Add(touchPoint);
         CreateMesh();
-        */
     }
 }
