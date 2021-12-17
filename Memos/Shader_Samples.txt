@@ -1,0 +1,14 @@
+// ランダムな値を返す
+float rand(float2 seed)
+{
+    return frac(sin(dot(seed.xy, float2(12.9898, 78.233))) * 43758.5453);
+}
+
+// 球の座標と半径をランダムに設定
+_SphereCount = 256;
+for (int x = 0; x < _SphereCount; x++)
+{
+    float3 center = float3(rand(x), rand(x + 1), rand(x + 2)) * 8 - 4;
+    float radius = rand(x + 3) * 0.5;
+    _Spheres[x] = float4(center, radius);
+}
