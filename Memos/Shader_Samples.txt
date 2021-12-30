@@ -12,3 +12,9 @@ for (int x = 0; x < _SphereCount; x++)
     float radius = rand(x + 3) * 0.5;
     _Spheres[x] = float4(center, radius);
 }
+
+
+                if (i.uv.x > (_Time.x % 1.0) && i.uv.x < ((_Time.x % 1.0) + 0.01))
+                {
+                    col.rgb *= fixed3(_Time.x % 1.0, _Time.y % 1.0, _Time.z % 1.0);
+                }
