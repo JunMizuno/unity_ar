@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 12539965}
   m_Layer: 0
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -373,6 +373,7 @@ GameObject:
   - component: {fileID: 1437502159}
   - component: {fileID: 1437502158}
   - component: {fileID: 1437502161}
+  - component: {fileID: 1437502162}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Untagged
@@ -388,7 +389,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1437502156}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 15, z: 0}
+  m_LocalPosition: {x: 0, y: 20, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 222298170}
@@ -472,6 +473,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1437502162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1437502156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6288e062b4e0424abcdf87d42bb3348, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1705886439
 GameObject:
   m_ObjectHideFlags: 0
@@ -486,7 +499,7 @@ GameObject:
   - component: {fileID: 1705886441}
   m_Layer: 0
   m_Name: Field
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -500,7 +513,7 @@ Transform:
   m_GameObject: {fileID: 1705886439}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 1, z: 2}
+  m_LocalScale: {x: 5, y: 1, z: 5}
   m_Children: []
   m_Father: {fileID: 12539965}
   m_RootOrder: 0
