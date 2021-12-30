@@ -26,6 +26,26 @@ public static class TouchManager
         return Input.GetMouseButton(0);
     }
 
+    public static bool IsTouchUpKey()
+    {
+        return Input.GetKeyDown(KeyCode.UpArrow);
+    }
+
+    public static bool IsTouchDownKey()
+    {
+        return Input.GetKeyDown(KeyCode.DownArrow);
+    }
+
+    public static bool IsTouchLeftKey()
+    {
+        return Input.GetKeyDown(KeyCode.LeftArrow);
+    }
+
+    public static bool IsTouchRightKey()
+    {
+        return Input.GetKeyDown(KeyCode.RightArrow);
+    }
+
     public static GameObject CheckCollidedObject(Camera targetCamera)
     {
         if (targetCamera == null)
