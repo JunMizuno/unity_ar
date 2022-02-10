@@ -48,8 +48,8 @@
                 fixed4 col = tex2D(_MainTex, i.uv);
 
                 float dist = distance(fixed3(0, 0, 0), i.pos);
-                float radius = 2.0;
-                if (dist < radius)
+                float value = abs(sin(dist * 3.0f - _Time.x * 100));
+                if (value > 0.9)
                 {
                     col.rgb *= fixed3(0, 0, 0);
                 }
