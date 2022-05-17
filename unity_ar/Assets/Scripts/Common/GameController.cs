@@ -18,7 +18,10 @@ public class GameController : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
 
         var mainCamera = Camera.main;
-        Debug.Log("<color=white>" + "GameController Camera:" + mainCamera.name + "</color>");
+        if (mainCamera != null)
+        {
+            Debug.Log("<color=white>" + "GameController Camera:" + mainCamera.name + "</color>");
+        }
     }
 
     private void Update()
